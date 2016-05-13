@@ -48,28 +48,18 @@ describe("Tree", function(){
 		done();
 	});
 
-	it.skip("#Tree ===> BFS Tree Traversal", function(done){
-		console.log("Tree Height");
-		console.log("---------------------------------------");
-		console.log(tree.getHeight(tree.root));
-		console.log("Tree Height Iteratively");
-		console.log("---------------------------------------");
-		console.log(tree.getHeightIteratively(tree.root));
-		console.log("Tree Top View");
-		console.log("---------------------------------------");
-		tree.topView(tree.root);
-		done();
-	});
-
 	it("#Tree ==> BFS Tree Traversal", function(done){
 		var bfsTraversal = new BFSTraversal();
 		
-		// console.log("---------------------------------------");
-		// console.log("TreeHieght: " + dfsTraversal.height(tree.root));
-		// console.log("---------------------------------------");
+		console.log("\n\n\n---------------------------------------");
+		console.log("TreeHieght: " + bfsTraversal.height(tree.root));
+		console.log("---------------------------------------");
 		console.log("Level Order Traversal");
 		console.log("---------------------------------------");
 		bfsTraversal.traverse(tree.root);
+		console.log("\n\nLevel Order Traversal Line By Line");
+		console.log("---------------------------------------");
+		bfsTraversal.traverseLineByLine(tree.root);
 		
 		done();
 	});
