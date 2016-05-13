@@ -1,6 +1,7 @@
 "use strict";
 
 var Node = require("./TreeNode");
+var Queue = require("../Queue/Queue");
 var util = require("util");
 
 var Tree = function(){
@@ -50,15 +51,34 @@ Tree.prototype.getHeight = function(root){
 	return treeHeight(root);
 }
 
-var treeHeight = function(node){
-	if(node === null || node === undefined){
-		return 0;
+Tree.prototype.getHeightIteratively = function(root){
+
+	if(root === null) return 0;
+
+	this.queue = new Queue();
+	var height = 0;
+	var nodeCount = 0;
+	while(1){
+		this.queue.enqueue(root);
+		nodeCount = this.queue.size;
+		if(nodeCount === 0) return height;
+		
+		height++;
+
+		console.log(height, nodeCount, this.queue.size);
+		//break;
+
+		if(nodeCount >10) break;
+
+		while(nodeCount > 0){
+			var node = this.queue.dequeue();
+			if(node.left !== null && node.left !== undefined) this.queue.enqueue(node.left);
+			if(node.right !== null && node.right !== undefined) this.queue.enqueue(node.right);
+			nodeCount--;
+			console.log(height, nodeCount, this.queue.size);
+		}
+
 	}
-
-	var lHeight = treeHeight(node.left);
-	var hHeight = treeHeight(node.right);
-
-	return (lHeight > hHeight) ? lHeight + 1 : hHeight + 1;
 }
 
 Tree.prototype.topView = function(root){
@@ -83,8 +103,17 @@ var iterate = function(node, dir){
 		console.log(node.value);
 		iterate(node.right, "right");
 	}
+}
 
-	
+var treeHeight = function(node){
+	if(node === null || node === undefined){
+		return 0;
+	}
+
+	var lHeight = treeHeight(node.left);
+	var hHeight = treeHeight(node.right);
+
+	return (lHeight > hHeight) ? lHeight + 1 : hHeight + 1;
 }
 
 module.exports = Tree;
