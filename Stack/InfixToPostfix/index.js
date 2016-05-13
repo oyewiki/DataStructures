@@ -21,6 +21,7 @@ function prec(ch){
 	}
 }
 
+//Algo
 	//loop on each character of infixStr
 	//check whether operand or not
 		//if Yes
@@ -39,10 +40,10 @@ function prec(ch){
 			//if yes
 			//push all the operand in the stack to postfix string till we get (
 
-function convertPostFix(infixStr){
+function convertPostFix(infixStr, stack){
 	var count =0;
 	var postfixStr = "";
-	var stack = new Stack();
+	
 
 	//loop through the length of the infix string
 	while(count < infixStr.length){
@@ -83,23 +84,44 @@ function convertPostFix(infixStr){
 	while(!stack.isEmpty()){
 		postfixStr += stack.pop();
 	}
-	console.log(postfixStr);
+	return postfixStr;
 }
 
-var InfixToPostfix = function(infixStr){
-	return convertPostFix(infixStr);
+function evaluatePostFix(postfixStr, stack){
+	var count = 0;
+
+	while(count < postfixStr.length){
+		if(isOperand(postfixStr[count])){
+			stack.push(postfixStr[count]);
+		} else {
+			if(stack.size() < 2){
+				console.log("Improper postfix");
+				break;
+			}
+			var operand2 = stack.pop();
+			var operand1 = stack.pop();
+			operand1 = eval(operand1 + postfixStr[count] + operand2);
+			console.log(operand1);
+			stack.push(operand1);
+		}
+		count ++;
+	}
+
+	return stack.pop();
+}
+
+var InfixToPostfix = function(){
+	
+}
+
+InfixToPostfix.prototype.convertToPostFix = function(infixStr){
+	var stack = new Stack();
+	return convertPostFix(infixStr, stack);
+}
+
+InfixToPostfix.prototype.evaluatePostFix = function(postfix){
+	var stack = new Stack();
+	return evaluatePostFix(postfix, stack);
 }
 
 module.exports = InfixToPostfix;
-
-(function(){
-	if(require.main === module){
-		// console.log(isOperand('A'));
-		// console.log(isOperand('1'));
-		// console.log(isOperand('+'));
-		// console.log(prec('a'));
-		// console.log(prec('*'));
-		InfixToPostfix("4^2*3-3+8/4/(1+1)");
-		//InfixToPostfix("a+b*c+d");
-	}
-}());

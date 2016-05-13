@@ -4,6 +4,7 @@ var Tree = require("../Tree/Tree");
 var tree = new Tree();
 var Node = require("../Tree/TreeNode");
 var BFSTraversal = require("../Tree/BFSTraversal");
+var DFSTraversal = require("../Tree/DFSTraversal");
 
 describe("Tree", function(){
 
@@ -25,27 +26,29 @@ describe("Tree", function(){
 		tree.root.right.right.right = new Node(17);
 	});
 
-	it.skip("#Tree ===> insertion", function(done){
-		done();
-	});
-
-
-	it.skip("#Tree ===> BFS Tree Traversal", function(done){
-		
-		console.log("Inorder Traversal");
-		console.log("---------------------------------------");
-		BFSTraversal("in", tree.root);
-		console.log("Preorder Traversal");
-		console.log("---------------------------------------");
-		BFSTraversal("pre", tree.root);
-		console.log("Postorder Traversal");
-		console.log("---------------------------------------");
-		BFSTraversal("post", tree.root);
-		console.log("---------------------------------------");
-		done();
-	});
 
 	it("#Tree ===> DFS Tree Traversal", function(done){
+		
+		var dfsTraversal = new DFSTraversal();
+
+
+		console.log("---------------------------------------");
+		console.log("TreeHieght: " + dfsTraversal.height(tree.root));
+		console.log("---------------------------------------");
+		console.log("Inorder Traversal");
+		console.log("---------------------------------------");
+		dfsTraversal.inorderTraversal(tree.root);
+		console.log("Preorder Traversal");
+		console.log("---------------------------------------");
+		dfsTraversal.preorderTraversal(tree.root);
+		console.log("Postorder Traversal");
+		console.log("---------------------------------------");
+		dfsTraversal.postorderTraversal(tree.root);
+		console.log("---------------------------------------");
+		done();
+	});
+
+	it.skip("#Tree ===> BFS Tree Traversal", function(done){
 		console.log("Tree Height");
 		console.log("---------------------------------------");
 		console.log(tree.getHeight(tree.root));
@@ -58,9 +61,16 @@ describe("Tree", function(){
 		done();
 	});
 
-	it.skip("#Tree ==> BFS Tree Traversal", function(done){
+	it("#Tree ==> BFS Tree Traversal", function(done){
 		var bfsTraversal = new BFSTraversal();
-		bfsTraversal.startTraversing(tree.root);
+		
+		// console.log("---------------------------------------");
+		// console.log("TreeHieght: " + dfsTraversal.height(tree.root));
+		// console.log("---------------------------------------");
+		console.log("Level Order Traversal");
+		console.log("---------------------------------------");
+		bfsTraversal.traverse(tree.root);
+		
 		done();
 	});
 
