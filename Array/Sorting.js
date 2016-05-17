@@ -146,43 +146,7 @@ Sorting.prototype.quickSort = function(cb){
 		}
 
 		 debug(arr1, arr2);
-		// var n1 = m - l + 1;
-		// var n2 = r - m;
-		// var i =0;
-		// var j = 0;
-		// var k = l;
-		// while(i < n1 && j < n2){
-		// 	if(arr1[i]<arr2[j]){
-		// 		array[k] = arr1[i];
-		// 		i++;
-		// 		k++;
-		// 	} else {
-		// 		array[k] = arr2[j];
-		// 		j++;
-		// 		k++;
-		// 	}
-		// 	debug("inside: ",array);
-		// }
-		// while(i < n1){
-		// 	array[k] = arr1[i];
-		// 	i++;
-		// 	k++;
-		// }
-
-		// while(j < n2){
-		// 	array[k] = arr2[j];
-		// 	j++;
-		// 	k++;
-		// }
 	}
 };
 
 module.exports = Sorting;
-
-/*
-Insertion Sort
-Selection Sort
-Quick Sort
-Merge Sort
-Heap Sort
-*/

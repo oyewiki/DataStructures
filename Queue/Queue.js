@@ -2,6 +2,7 @@
 
 var util = require("util");
 
+//Initialise Queue
 var Queue = function(){
 	this.front = 0;
 	this.rear = 0;
@@ -9,36 +10,43 @@ var Queue = function(){
 	this.queue = [];
 };
 
+//Enqueue - Add an item to queue
 Queue.prototype.enqueue = function(value){
 	this.queue[this.rear] = value;
-	this.incRear();
-	this.incSize();
+	this.rear++;
+	this.size++;
 };
 
+//Dequeue - Remove an item from the queue
 Queue.prototype.dequeue = function(){
 	if(this.size === 0) return util.log("Nothing to dequeue, Queue is already empty.");
 	var item = this.queue[this.front];
-	this.incFront();
-	this.decSize();
+	this.front++;
+	this.size--;
 	return item;
 };
 
+//isEmpty - returns true if queue is empty
 Queue.prototype.isEmpty = function(){
 	return (this.size === 0);
 };
 
+//Front - The pointer to the first inserted element
 Queue.prototype.front = function(){
 	return this.front;
 };
 
+//Rear - The pointer to the last inserted element
 Queue.prototype.rear = function(){
 	return this.rear;
 };
 
+//Size - returns the size of the queue at any point of time
 Queue.prototype.size = function(){
 	return this.size;
 };
 
+//Print the queue with some of the properties.
 Queue.prototype.print = function(){
 	util.log("Front : " + this.front.toString());
 	util.log("Rear : " + this.rear.toString());
@@ -49,23 +57,6 @@ Queue.prototype.print = function(){
 	for(var i = this.front; i<=this.rear - 1; i++){
 		util.log(this.queue[i].toString());
 	}
-};
-
-Queue.prototype.incRear = function(){
-	this.rear++;
-};
-
-Queue.prototype.incFront = function(){
-	this.front++;
-};
-
-Queue.prototype.incSize = function(){
-	this.size++;
-};
-
-Queue.prototype.decSize = function(){
-	if(this.size === 0) return util.log("Can not decrease size, Size is already 0");
-	this.size--;
 };
 
 module.exports = Queue;
