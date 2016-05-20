@@ -14,6 +14,16 @@ LinkedList.prototype.printList = function(){
 	}
 };
 
+LinkedList.prototype.printListInOneLine = function(){
+	var n = this.head;
+	var elem = '';
+	while(n !== null){
+		elem  += "->" + n.value;
+		n = n.next;
+	}
+	console.log("head" + elem);
+};
+
 LinkedList.prototype.deepPrintList = function() {
 	var n = this.head;
 	while(n !== null){
@@ -40,6 +50,9 @@ LinkedList.prototype.insertAfter = function(previousNode, new_value) {
 };
 
 LinkedList.prototype.append = function(new_value) {
+	if(this.head === null){
+		return this.head = new Node(new_value);
+	}
 	var n = this.head;
 	while(n != null){
 		if(n.next === null){
