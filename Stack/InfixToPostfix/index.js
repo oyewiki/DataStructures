@@ -1,11 +1,37 @@
 "use strict";
 
+/**
+ *
+ *	//Algo
+ *		//loop on each character of infixStr
+ *		//check whether operand or not
+ *			//if Yes
+ *			// add that to postfixe string
+ *			//If Not
+ *			// check if the top element of stack has more prec with the current operand
+ *				//If yes
+ *				//thank push it to postfix string
+ *				//If not 
+ *				//than push current operand to stack
+ *			//repeat last step 
+ *			//operand is (
+ *				//if yess
+ *				//than push it to stack
+ *			//if operand is )
+ *				//if yes
+ *				//push all the operand in the stack to postfix string till we get (
+ *
+ */
+
+//Requireing Stack class
 var Stack = require("../");
 
+//To check whether element is operand or not
 function isOperand(ch){
 	return ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <='Z') || (ch >= '1' && ch <= 9));
 }
 
+//Return the precedence of the operator
 function prec(ch){
 	switch(ch){
 		case '+' : 
@@ -21,25 +47,7 @@ function prec(ch){
 	}
 }
 
-//Algo
-	//loop on each character of infixStr
-	//check whether operand or not
-		//if Yes
-		// add that to postfixe string
-		//If Not
-		// check if the top element of stack has more prec with the current operand
-			//If yes
-			//thank push it to postfix string
-			//If not 
-			//than push current operand to stack
-		//repeat last step 
-		//operand is (
-			//if yess
-			//than push it to stack
-		//if operand is )
-			//if yes
-			//push all the operand in the stack to postfix string till we get (
-
+//Function to convert Infix to Postfix
 function convertPostFix(infixStr, stack){
 	var count =0;
 	var postfixStr = "";
@@ -87,38 +95,50 @@ function convertPostFix(infixStr, stack){
 	return postfixStr;
 }
 
+
+//Function to evaluate Postfix
 function evaluatePostFix(postfixStr, stack){
 	var count = 0;
 
+	//Loop while count is less than postfix string length
 	while(count < postfixStr.length){
+		//check whether element is operand or not
 		if(isOperand(postfixStr[count])){
+			//push element to stack
 			stack.push(postfixStr[count]);
 		} else {
 			if(stack.size() < 2){
 				console.log("Improper postfix");
 				break;
 			}
+			//Pop top two elements from stack
 			var operand2 = stack.pop();
 			var operand1 = stack.pop();
+			//Evaluate operand1 operator and operand2
 			operand1 = eval(operand1 + postfixStr[count] + operand2);
 			console.log(operand1);
+			//Push result operand1 back to stack
 			stack.push(operand1);
 		}
+		//Increment the counter
 		count ++;
 	}
-
+	//Last element is the result of the evalution pop it and return to give result.
 	return stack.pop();
 }
 
+// InfixToPostfix Class Creation
 var InfixToPostfix = function(){
 	
 }
 
+//Method to convert infix to postfix
 InfixToPostfix.prototype.convertToPostFix = function(infixStr){
 	var stack = new Stack();
 	return convertPostFix(infixStr, stack);
 }
 
+//Method to evaluate postfix
 InfixToPostfix.prototype.evaluatePostFix = function(postfix){
 	var stack = new Stack();
 	return evaluatePostFix(postfix, stack);
