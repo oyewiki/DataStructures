@@ -38,10 +38,14 @@ BFSTraversal.prototype.stratTraversing = function(vertice){
 	while(!this.queue.isEmpty()){
 		
 		var item = this.queue.dequeue();
+
+		//console.log the vertice
 		console.log(item);
 		
+		//Take the head of the list of vertices attached
 		var n = this.graph.adjArray[item].head;
 		
+		//Loop while we enqueue all the adjacent vertices.
 		while(n !== null){
 			if(n.value != null && this.traversedVertices.indexOf(n.value) < 0){
 				this.queue.enqueue(n.value);
