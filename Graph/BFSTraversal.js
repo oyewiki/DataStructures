@@ -7,7 +7,7 @@ var Queue = require("../Queue/Queue")
 var util = require("util");
 
 var BFSTraversal = function(graph){
-	this.traversedVertices = [];
+	this.visited = [];
 	this.queue = new Queue();
 	this.graph = graph;
 };
@@ -15,24 +15,24 @@ var BFSTraversal = function(graph){
 /** * Algo For BFSTraversal
  * 
  * Start from the starting vertices passed in 
- * Put that vertices in traversedVertices Array
+ * Put that vertices in visited Array
  * Find all the adjacent vertices of that vertices and enqueue them in a queue.
  * 		* Dequeue a vertice from queue
- *		* Push this vertice in traversedVertices Array.
+ *		* Push this vertice in visited Array.
  *		* Find all its adjacent vertices by traversing its adjacencey list
  *		* Enqueue all the adjacent vertices in queue.
  *		* Repeat all above steps untill all vertices a traversed
  */
 
 
-BFSTraversal.prototype.stratTraversing = function(vertice){
-	if(!this.graph || !this.graph.adjArray || !this.graph.adjArray[vertice]) {
+BFSTraversal.prototype.startTraversing = function(vertice){
+	if(!this.graph || !util.isArray(this.graph.adjArray) || !this.graph.adjArray.indexOf(vertice)) {
 		return util.log("Graph is not having the desired vertices.");
 	}
 
 	//Push first element in the group
 	this.queue.enqueue(vertice);
-	this.traversedVertices.push(vertice);
+	this.visited.push(vertice);
 
 	//While look till the queue gets empty
 	while(!this.queue.isEmpty()){
@@ -47,9 +47,9 @@ BFSTraversal.prototype.stratTraversing = function(vertice){
 		
 		//Loop while we enqueue all the adjacent vertices.
 		while(n !== null){
-			if(n.value != null && this.traversedVertices.indexOf(n.value) < 0){
+			if(n.value != null && this.visited.indexOf(n.value) < 0){
 				this.queue.enqueue(n.value);
-				this.traversedVertices.push(n.value);
+				this.visited.push(n.value);
 			}
 			n = n.next;
 		}
