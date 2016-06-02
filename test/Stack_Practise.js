@@ -16,14 +16,19 @@ describe("#Stack Practise Questions", function(){
 		done();
 	});
 
-	it("#Stack Bracket Reversal", function(done){
+	it("#Stack Bracket Reversal Large Count", function(done){
 		console.log(bracketReversal("{{{}}{}}{{{{}{{{{}"));
 		done();
 	});
 
-	it("#Stack Bracket Reversal", function(done){
-		console.log(bracketReversal("{{{}"));
+	it("#Stack Bracket Reversal (First arrow in reverse deirection)", function(done){
+		console.log(bracketReversal("}{{{{}"));
 		done();
 	});
+
+	it("#Stack Bracket Reversal (Improper count)", function(done){
+            console.log(bracketReversal("}{}{{{}"));
+            done();
+    });
 
 });

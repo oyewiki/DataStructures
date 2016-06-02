@@ -70,7 +70,37 @@ Trie.prototype.search = function(word){
 	}
 };
 
-Trie.prototype.delete = function(){};
+/**
+ * [delete description]
+ * @param  {[type]} word [description]
+ * @return {[type]}      [description]
+ *
+ * * Algo
+ * This contains 4 cases 
+ * 1. Key may not be there in trie. Delete operation should not modify trie.
+ * 2. Key present as unique key (no part of key contains another key (prefix), nor the key itself is prefix of another key in trie). Delete all the nodes.
+ * 3. Key is prefix key of another long key in trie. Unmark the leaf node.
+ * 4. Key present in trie, having atleast one other key as prefix key. Delete nodes from end of key until first leaf node of longest prefix key.
+ *
+ */
+Trie.prototype.delete = function(word){
+	var count = 0;
+	var isLastChar;
+	var char;
+	var currentNode = this.root.childrens;
+	// console.log(currentNode, word[count]);
+	iterate(word[count], false);
+
+	function iterate(char, isLeafNode){
+		// console.log(currentNode, char, currentNode[char], isLeafNode);
+		if(!currentNode[char] || (isLeafNode)) return;
+		currentNode = currentNode[char].childrens;
+		isLeafNode = (count === word.length - 1) ? true : false;
+		iterate(word[++count],isLeafNode);
+		console.log(char);
+	}
+};
+
 
 Trie.prototype.print = function(){
 	console.log(this.root);
