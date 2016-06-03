@@ -96,6 +96,19 @@ function convertPostFix(infixStr, stack){
 }
 
 
+/**
+ * * Algo
+ *
+ * Create a stack to push ond pop the operands
+ * 
+ * Run a loop for strings length 
+ * Now look for each element in the string
+ * If element is operand than push it to stack
+ * If element is operator than pop two elements from the stack, apply operator on them and push the result back to stack
+ * Once the string is traversed completely
+ * There will be only one operand left in stack and that is our answer otherwise it is an improper string
+ * 
+ */
 //Function to evaluate Postfix
 function evaluatePostFix(postfixStr, stack){
 	var count = 0;
