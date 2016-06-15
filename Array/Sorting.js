@@ -3,8 +3,8 @@ var util = require("util");
 var debug = require("debug")("Array:BubbleSort");
 
 var Sorting = function(unsortedArray){
-	//this.defaultArray = [1,9,2,14,3,8,17,11,4,13,5,7,6,12,19,10];
-	this.defaultArray = [1,9,2,14];
+	this.defaultArray = [1,9,2,14,3,8,17,11,4,13,5,7,6,12,19,10];
+	//this.defaultArray = [1,9,2,14];
 	this.unsortedArray = unsortedArray || this.defaultArray;
 };
 
