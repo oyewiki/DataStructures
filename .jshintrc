@@ -1,0 +1,6 @@
+{
+  "node" : true,
+  "strict": true,
+  "mocha": true,
+  "globals": { "require": false, "module": true, "console" : true}
+}

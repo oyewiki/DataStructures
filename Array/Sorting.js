@@ -8,57 +8,82 @@ var Sorting = function(unsortedArray){
 	this.unsortedArray = unsortedArray || this.defaultArray;
 };
 
+var swap = function(array, m, n){
+	var temp = array[m];
+	array[m] = array[n];
+	array[n] = temp;
+	reuturn array;
+}
+
 Sorting.prototype.bubbleSort = function(cb){
-	var self = this;
+	
 	var temp;
-	var swap = true;
+	var self = this;
+	var isSwapReqred = true;
 	var array = self.unsortedArray;
-	var j = 0;
-	while(swap){
-		swap = false;
+	
+	while(isSwapReqred){
+		
+		isSwapReqred = false;
+		
 		for(var i = 0; i< array.length-(j+1); i++){
+		
 			if(array[i]> array[i+1]){
-				temp = array[i];
-				array[i] = array[i+1];
-				array[i+1] = temp;
-				swap = true;
+
+				swap(array, i, i+1);
+				isSwapReqred = true;
+
 			}
 		}
-		j++;
+
 		debug(array);
 	}
+
 	cb(null, array);
 };
+
 
 Sorting.prototype.insertionSort = function(cb) {
+	
+	var temp;
 	var self = this;
 	var array = self.unsortedArray;
-	var temp;
+	
 	for(var i=1; i< array.length; i++){
+
 		for(var j = i; j>0; j--){
+
 			if(array[j] < array[j-1]){
-				temp = array[j];
-				array[j] = array[j-1];
-				array[j-1] = temp;
+				swap(array, j, j-1);
 			}
+
 		}
+
 		debug(array);
+
 	}
+
 	cb(null, array);
 };
 
+
+//Selection Sort
 Sorting.prototype.selectionSort = function(cb){
 	var array = this.unsortedArray;
 	var temp;
+	
 	for(var i=0; i < array.length-1; i++){
+		
 		for(var j = i+1; j < array.length;j++){
+			
 			if(array[j] < array[i]){
-				temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
+				swap(array, i, j);
 			}
+
 		}
+
 		debug(array);
+
 	}
 	cb(null, array);
 };
