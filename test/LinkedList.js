@@ -3,7 +3,7 @@ var LinkedList = require("../LinkedList/LinkedList");
 var linkedList = new LinkedList();
 var SwapKthNodeFromStartAndEnd = require("../LinkedList/SwapKthNodeFromStartAndEnd");
 var ReverseLinkedListForFirstKNodes = require("../LinkedList/ReverseLinkedListForFirstKNodes");
-var ReverseLinkedListForEveryKNodes = require("../LinkedList/ReverseLinkedListForEveryKNodes");
+var RearrangeLinkedListInPlace = require("../LinkedList/RearrangeLinkedListInPlace");
 
 describe.skip("Linked List", function() {
 
@@ -22,8 +22,8 @@ describe.skip("Linked List", function() {
 		linkedList.push(1);
 		linkedList.push(3);
 		linkedList.push(2);
-		//linkedList.printList();
-		//linkedList.deepPrintList();
+		linkedList.printList();
+		linkedList.deepPrintList();
 		done();
 	});
 
@@ -73,7 +73,7 @@ describe.skip("Linked List", function() {
 		done();
 	});
 
-	it("#Linked List ==> Reverse", function(done) {
+	it.skip("#Linked List ==> Reverse", function(done) {
 		linkedList.printListInOneLine();
 		linkedList.reverse();
 		linkedList.printListInOneLine();
@@ -84,7 +84,7 @@ describe.skip("Linked List", function() {
 
 describe.skip("LinkedList Swap Kth Node From Start and End", function(){
 	beforeEach("#LinkedList Clean", function(){
-		linkedList = new LinkedList;
+		linkedList = new LinkedList();
 		linkedList.append(1);
 		linkedList.append(2);
 		linkedList.append(3);
@@ -128,7 +128,7 @@ describe.skip("LinkedList Swap Kth Node From Start and End", function(){
 
 describe.skip("LinkedList Reverse First K Node", function(){
 	beforeEach("#LinkedList Clean", function(){
-		linkedList = new LinkedList;
+		linkedList = new LinkedList();
 		linkedList.append(1);
 		linkedList.append(2);
 		linkedList.append(3);
@@ -153,9 +153,9 @@ describe.skip("LinkedList Reverse First K Node", function(){
 	});
 });
 
-describe("LinkedList Reverse Every K Node", function(){
+describe.skip("LinkedList Reverse Every K Node", function(){
 	beforeEach("#LinkedList Clean", function(){
-		linkedList = new LinkedList;
+		linkedList = new LinkedList();
 		linkedList.append(1);
 		linkedList.append(2);
 		linkedList.append(3);
@@ -177,5 +177,30 @@ describe("LinkedList Reverse Every K Node", function(){
 		linkedList.printListInOneLine();
 
 		done();
+	});
+});
+
+describe("Linked List Rearrangement In Place", function(){
+	before("#Init Linked List", function(){
+		linkedList = new LinkedList();
+		linkedList.append("a1");
+		linkedList.append("a2");
+		linkedList.append("a3");
+		linkedList.append("a4");
+		linkedList.append("a5");
+		linkedList.append("b1");
+		linkedList.append("b2");
+		linkedList.append("b3");
+		linkedList.append("b4");
+		linkedList.append("b5");
+	});
+
+	it("#Rearrange", function(done){
+		linkedList.printListInOneLine();
+		
+		var rearrangeLinkedListInPlace = new RearrangeLinkedListInPlace(linkedList);		
+		rearrangeLinkedListInPlace.rearrange();
+
+		linkedList.printListInOneLine();
 	});
 });
