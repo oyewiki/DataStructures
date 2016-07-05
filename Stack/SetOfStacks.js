@@ -1,13 +1,7 @@
 "use strict";
 
 /** This class will implement set of stacks **/
-
 var Stack = require("./");
-
-
-function addStack(){}
-
-function removeStack(){}
 
 function isThresholdReached(currentStack, threshold){
 	//if(stackSize >= threshold) return true;
@@ -46,6 +40,34 @@ SetOfStacks.prototype.pop = function(){
 	
 };
 
+SetOfStacks.prototype.popAt = function(index){
+	// First we will pop an element from the the stack present at the input index
+	// Than from that index we will run a loop from stacks index + 1 to currentStack.
+	//	In this we will pop an item from each stack and push that element to previous stack
+	
+	if(index === null || index === undefined){
+		console.log("Invalid index");
+		return;
+	}
+	
+	if(index > this.currentStack){
+		console.log("Invalid index, SetOfStack dont have enough items in it.");
+		return;
+	}
+	
+	var item = this.setOfStack[index].pop();
+	var poppedItem;
+	
+	// In this we still have to write code for filling the setOFStacks
+	//  and to push all elements ahead of this to one place back
+	//for(var i= index; i < this.currentStack; i++){
+	//	poppedItem = this.setOfStack[i+1].pop();
+	//	this.setOfStack[i].push(poppedItem);
+	//}
+
+	return item;
+};
+
 SetOfStacks.prototype.print = function(){
 	console.log(this.setOfStack);
 };
@@ -78,5 +100,6 @@ module.exports = SetOfStacks;
         console.log(setOfStacks.pop());
         console.log(setOfStacks.pop());
 	console.log(setOfStacks.pop());
+	console.log(setOfStacks.popAt(2));
 	setOfStacks.print();
 }());
