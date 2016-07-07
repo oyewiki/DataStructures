@@ -12,8 +12,8 @@ var swap = function(array, m, n){
 	var temp = array[m];
 	array[m] = array[n];
 	array[n] = temp;
-	reuturn array;
-}
+	return array;
+};
 
 Sorting.prototype.bubbleSort = function(cb){
 	
@@ -44,26 +44,22 @@ Sorting.prototype.bubbleSort = function(cb){
 
 
 Sorting.prototype.insertionSort = function(cb) {
-	
-	var temp;
-	var self = this;
-	var array = self.unsortedArray;
-	
-	for(var i=1; i< array.length; i++){
 
-		for(var j = i; j>0; j--){
+	var array = this.defaultArray;
+	var temp,j;
 
-			if(array[j] < array[j-1]){
-				swap(array, j, j-1);
-			}
-
+	for(var i = 1; i < array.length; i++){
+		j = i-1;
+		temp = array[i];
+		while(array[j] > temp && j>= 0){
+			array[j+1] = array[j];
+			j--;
 		}
-
-		debug(array);
-
+		array[j+1] = temp;
 	}
-
-	cb(null, array);
+	
+	cb(null,array);
+	
 };
 
 

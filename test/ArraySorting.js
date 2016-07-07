@@ -14,7 +14,7 @@ describe("ArraySorting", function(){
 		});
 	});
 
-	it("#InsertionSort", function(done){
+	it.only("#InsertionSort", function(done){
 		sorting.insertionSort(function(err, result){
 			if(err){
 				return done(err);
