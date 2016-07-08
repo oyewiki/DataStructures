@@ -4,7 +4,7 @@ var debug = require("debug")("Array:BubbleSort");
 
 var Sorting = function(unsortedArray){
 	this.defaultArray = [1,9,2,14,3,8,17,11,4,13,5,7,6,12,19,10];
-	//this.defaultArray = [1,9,2,14];
+	//this.defaultArray = [1,9,2,14,3,8,17,11];
 	this.unsortedArray = unsortedArray || this.defaultArray;
 };
 
@@ -66,21 +66,22 @@ Sorting.prototype.insertionSort = function(cb) {
 //Selection Sort
 Sorting.prototype.selectionSort = function(cb){
 	var array = this.unsortedArray;
-	var temp;
-	
-	for(var i=0; i < array.length-1; i++){
-		
-		for(var j = i+1; j < array.length;j++){
-			
-			if(array[j] < array[i]){
-				swap(array, i, j);
-			}
+	var min;
 
+	for(var i = 0; i < array.length - 1; i++){
+		min = i;
+		for(var j = i+1; j< array.length; j++){
+			if(array[j]< array[min]){
+				min = j;
+			}
 		}
 
-		debug(array);
+		if(min != i){
+			array = swap(array, i, min);
+		}
 
 	}
+		
 	cb(null, array);
 };
 
@@ -143,31 +144,36 @@ Sorting.prototype.mergeSort = function(cb){
 
 Sorting.prototype.quickSort = function(cb){
 	var array = this.unsortedArray;
-	quickSort(array, 0, array.length - 1);
-	return cb(null, array);
-	function quickSort(array, l, r){
-		if(l<r){
-			var p = Math.round((Math.random(r))*10);
-			quickSort(array, l, p);
-			quickSort(array, p+1, r);
-			qsort(array, l, p, r);
-			debug("quickSort: ",array);
+	var pivot;
+
+	qSort(array, 0, array.length - 1);
+
+	cb(null, array);
+
+	function qSort(array, l, r){
+		if(l < r){
+			pivot = processArray(array, l, r);
+			qSort(array, l, pivot-1);
+			qSort(array, pivot + 1, r);		
 		}
 	}
 
-	function qsort(array, l, p, r){
-		var arr1 = [];
-		var arr2 = [];
-		var arr3 = [];
-		for(var i = l; i <= p; i++){
-			arr1.push(array[i]);
+	function processArray(array, l, r){
+		var p = r;
+		var i = l;
+		for(var j = l; j < r; j++){
+			
+			if(array[j] < array[p]){
+				array = swap(array, i, j);
+				i++;
+			}
 		}
-		for(var i = p+1; i <= r; i++){
-			arr2.push(array[i]);
-		}
-
-		 debug(arr1, arr2);
+		
+		array = swap(array, i, p);
+		p = i;	
+		return p;
 	}
+	
 };
 
 module.exports = Sorting;

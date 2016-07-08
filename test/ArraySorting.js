@@ -14,7 +14,7 @@ describe("ArraySorting", function(){
 		});
 	});
 
-	it.only("#InsertionSort", function(done){
+	it("#InsertionSort", function(done){
 		sorting.insertionSort(function(err, result){
 			if(err){
 				return done(err);
@@ -44,7 +44,7 @@ describe("ArraySorting", function(){
 		});
 	});
 	
-	it("#QuickSort", function(done){
+	it.only("#QuickSort", function(done){
 		sorting.quickSort(function(err, result){
 			if(err){
 				return done(err);
