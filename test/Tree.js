@@ -5,6 +5,7 @@ var tree = new Tree();
 var Node = require("../Tree/TreeNode");
 var BFSTraversal = require("../Tree/BFSTraversal");
 var DFSTraversal = require("../Tree/DFSTraversal");
+var VFSTraversal = require("../Tree/VFSTraversal");
 
 describe("Tree", function(){
 
@@ -61,6 +62,13 @@ describe("Tree", function(){
 		console.log("---------------------------------------");
 		bfsTraversal.traverseLineByLine(tree.root);
 		
+		done();
+	});
+
+	it.only("#tree ==> VFS Tree Traversal", function(done){
+
+		var vfsTraversal = new VFSTraversal();
+		vfsTraversal.traverse(tree.root);
 		done();
 	});
 
