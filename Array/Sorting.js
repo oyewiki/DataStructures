@@ -86,59 +86,58 @@ Sorting.prototype.selectionSort = function(cb){
 };
 
 Sorting.prototype.mergeSort = function(cb){
-	var array = this.unsortedArray;
-	mergeSort(array, 0, array.length - 1);
-	return cb(null, array);
-	function mergeSort(array, l, r){
-		if(l<r){
-			var m = Math.floor((l + r) /2);
-			mergeSort(array, l, m);
-			mergeSort(array, m+1, r);
-			merge(array, l, m, r);
-			debug("mergeSort: ",array);
-		}
-	}
+	var array = this.defaultArray;
+	
+	mSort(array, 0, array.length - 1);
+	
+	cb(null, array);	
 
-	function merge(array, l, m, r){
+	function mSort(array, l, r){
+		if(l < r){
+			var p = Math.floor((l + r)/2);
+			
+			console.log(l, r);
+	
+			mSort(array, l,p);
+			mSort(array,p+1, r);
+			merge(array, l, p, r);
+		}
+	}	
+
+	function merge(array, l, p, r){
 		var arr1 = [];
 		var arr2 = [];
-		var arr3 = [];
-		for(var i = l; i <= m; i++){
+		
+		var i,j,k;	
+
+		for(i = l; i <= p; i++){
 			arr1.push(array[i]);
 		}
-		for(var i = m+1; i <= r; i++){
+
+		for(i = p+1; i <= r; i++){
 			arr2.push(array[i]);
 		}
 
-		debug(arr1, arr2);
-		var n1 = m - l + 1;
-		var n2 = r - m;
-		var i =0;
-		var j = 0;
-		var k = l;
-		while(i < n1 && j < n2){
-			if(arr1[i]<arr2[j]){
-				array[k] = arr1[i];
-				i++;
-				k++;
+		//console.log(arr1, arr2);
+		
+		i = 0; j = 0; k = l;
+
+		while(i < arr1.length && j < arr2.length){
+			if(arr1[i] < arr2[j]){
+				array[k++] = arr1[i++];
 			} else {
-				array[k] = arr2[j];
-				j++;
-				k++;
+				array[k++] = arr2[j++];
 			}
-			debug("inside: ",array);
-		}
-		while(i < n1){
-			array[k] = arr1[i];
-			i++;
-			k++;
 		}
 
-		while(j < n2){
-			array[k] = arr2[j];
-			j++;
-			k++;
+		while(i < arr1.length){
+			array[k++] = arr1[i++];
 		}
+
+		while(j < arr2.length){
+			array[k++] = arr2[j++];
+		}
+		
 	}
 };
 

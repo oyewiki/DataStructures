@@ -34,7 +34,7 @@ describe("ArraySorting", function(){
 		});
 	});
 
-	it("#MergeSort", function(done){
+	it.only("#MergeSort", function(done){
 		sorting.mergeSort(function(err, result){
 			if(err){
 				return done(err);
@@ -44,7 +44,7 @@ describe("ArraySorting", function(){
 		});
 	});
 	
-	it.only("#QuickSort", function(done){
+	it("#QuickSort", function(done){
 		sorting.quickSort(function(err, result){
 			if(err){
 				return done(err);
